@@ -1,0 +1,156 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<%@ Register Src="~/WUC/WUC_Kontaktoplysninger.ascx" TagPrefix="uc1" TagName="WUC_Kontaktoplysninger" %>
+<%@ Register Src="~/WUC/WUC_Møbler.ascx" TagPrefix="uc1" TagName="WUC_Møbler" %>
+<%@ Register Src="~/WUC/WUC_Nyhedsbrev.ascx" TagPrefix="uc1" TagName="WUC_Nyhedsbrev" %>
+
+
+
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="CMK-Møbler er en etableret møbelforretning i hjertet af København. Vi vil gerne præsentere butikkens varesortiment til jer. ">
+    <title></title>
+
+    <!--Bootstrap-->
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/bootstrap-theme.min.css" rel="stylesheet" />
+
+    <!--LightBox-->
+    <link href="Styles/css/lightbox.css" rel="stylesheet" />
+
+    <!-- Særlige styles der overskriver Bootstrap -->
+    <link href="Styles/MyStyleSheet.css" rel="stylesheet" />
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <asp:HyperLink ID="HyperLink_Logo" class="logo" NavigateUrl="~/Default.aspx" runat="server"></asp:HyperLink>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav pull-right">
+                        <li class='<%= IsCurrent("Nyhedsarkiv.aspx") %>'>
+                            <asp:HyperLink ID="HyperLink_NavArkiv" NavigateUrl="Nyhedsarkiv.aspx" runat="server"></asp:HyperLink></li>
+                        <li class='<%= IsCurrent("Mobler.aspx") %>'>
+                            <asp:HyperLink ID="HyperLink_NavMobler" NavigateUrl="Mobler.aspx" runat="server"></asp:HyperLink></li>
+                        <li class='<%= IsCurrent("Kontakt.aspx") %>'>
+                            <asp:HyperLink ID="HyperLink_NavKontakt" NavigateUrl="Kontakt.aspx" runat="server"></asp:HyperLink></li>
+                        <!--DDL Variant1-->
+                        <%--<li class='dropdown <%= IsCurrent("Serier.aspx") %>'>
+                            <asp:HyperLink ID="HyperLink_Serier" runat="server">Serier</asp:HyperLink>
+                            <ul class="dropdown-content">
+                                <asp:Repeater ID="Repeater_Serie" ItemType="_Serie" runat="server">
+                                    <ItemTemplate>
+                                        <li><a href='<%# "Serier.aspx?sid=" +  Item.serie_id%>'><%#Item.serie_navn %></a></li>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </ul>
+                        </li>--%>
+                        <!--DDL Variant2-->
+                        <li class='dropdown <%= IsCurrent("Serier.aspx") %>'><a id="DDL_Serier" data-toggle="dropdown" class="dropdown-toggle">Serier</a>
+                            <ul role="menu" class="dropdown-menu" aria-labelledby="drop1">
+                                <asp:Repeater ID="Repeater_DDL_Serier" runat="server" ItemType="_Serie">
+                                    <ItemTemplate>
+                                        <li role="presentation">
+                                            <asp:HyperLink ID="HyperLink_DDL_Li"
+                                                NavigateUrl='<%# "Serier.aspx?serieId=" + Item.serie_id %>'
+                                                runat="server"><%# Item.serie_navn %></asp:HyperLink>
+                                        </li>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.nav-collapse -->
+            </div>
+            <!-- /.container -->
+        </div>
+        <!-- /.navbar -->
+        <div>
+            <div class="container">
+                <h2>
+                    <asp:Label ID="Label_Title" runat="server" Text="Label"></asp:Label>
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder_SideNavn" runat="server">
+                    </asp:ContentPlaceHolder>
+
+                </h2>
+            </div>
+
+            <div class="container indhold">
+                <div class="row">
+                    <!--Den venstre side-->
+                    <div class="col-md-4">
+
+                        <uc1:WUC_Møbler runat="server" ID="WUC_Møbler" />
+                        <uc1:WUC_Nyhedsbrev runat="server" ID="WUC_Nyhedsbrev" />
+                        <uc1:WUC_Kontaktoplysninger runat="server" ID="WUC_Kontaktoplysninger" />
+                    </div>
+                    <!--Den højre side-->
+                    <div class="col-md-8">
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
+                </div>
+
+             
+            </div>
+            
+             <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server">
+            </asp:ContentPlaceHolder>
+         
+        </div>
+
+        <footer>
+            <div class="container">
+                <asp:Label ID="Label_FooterInfo" runat="server"></asp:Label>
+            </div>
+        </footer>
+    </form>
+
+    <script src="Scripts/jquery-3.1.0.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+
+    <!--LightBox-->
+    <script src="Scripts/js/lightbox.js"></script>
+
+    <!--Script til DropDownMenu-->
+    <script>
+        $(function () {
+            $(".dropdown").hover(
+                    function () {
+                        $('.dropdown-menu', this).stop(true, true).fadeIn("fast");
+                        $(this).toggleClass('open');
+                        $('b', this).toggleClass("caret caret-up");
+                    },
+                    function () {
+                        $('.dropdown-menu', this).stop(true, true).fadeOut("fast");
+                        $(this).toggleClass('open');
+                        $('b', this).toggleClass("caret caret-up");
+                    });
+        });
+    </script>
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+
+
+    </asp:ContentPlaceHolder>
+
+
+</body>
+</html>

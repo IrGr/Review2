@@ -1,0 +1,308 @@
+﻿body {
+    background-color:#fff;/*hvid*/
+    padding-top: 60px;  
+}
+*{
+    color:#464646;/*grå*/
+    font-family:Verdana;
+    line-height:14px;
+    font-size:10px;
+}
+#Label_Title{
+    font-size:14px;
+    font-weight:bold;
+}
+#Label_SideNavn{
+    color:#777;
+}
+a{
+    color:#464646;/*grå*/
+}
+h1,h3{
+    color:#ff7200;/*orange*/
+    font-size:10px;
+}
+h1{
+    font-size:14px;
+}
+.moblet h1{
+    color:#464646;
+    font-weight:bold;
+}
+.form-control{
+    border-radius:0;
+}
+.bold{
+    font-weight:bold;
+}
+.forfatter_color{
+    color:#ff7200;
+}
+/*/////////////////////
+  ////            /////
+ ///// Navigation /////
+ /////            /////
+ //////////////////////*/
+.navbar.navbar-fixed-top.navbar-inverse{
+    background:#000;
+}
+.navbar{
+    /*padding:40px 0;*/
+}
+.navbar-inverse .navbar-nav>li>a{
+   color:#777777;
+}
+.navbar-nav a{
+    font-size:11px;
+}
+.navbar-nav li a{
+    padding:10px 15px;
+    margin-top:5px;
+    color:#777777;
+}
+
+
+/*/////////////////////
+  ////            /////
+ /////    Logo    /////
+ /////            /////
+ //////////////////////*/
+
+.logo{
+    font-size:14px;
+    line-height:50px;
+    color:#777777;/*grå*/
+} 
+a.logo:hover{
+    text-decoration: none;
+    color:#fff;
+}
+
+/*////////////////DropDownMenu////////////////////////*/
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-content{
+    padding-left: 0;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown-content{
+    list-style:none;
+}
+
+
+
+/*////////////////DropDownMenu med js////////////////////*/
+/*NAVIGATION*/
+.dropdown-menu>li>a:hover {
+    background-image:none;
+}
+.navbar-nav>li>.dropdown-menu{
+    /*background-color:transparent;*/
+    margin:0;
+}
+.navbar-nav>li>a:hover,
+.dropdown-menu>li>a:hover,
+a#DDL_Genre.dropdown-toggle:hover{
+    color:#fff;
+    background-color:#808080;
+}
+
+li.dropdown.open ul{
+    padding-bottom:0;
+    padding-top:0;
+}
+.open > .dropdown-menu {
+  -webkit-transform: scale(1, 1);
+  transform: scale(1, 1);  
+  opacity:1;
+  color:#ff0000;
+}
+  
+.dropdown-menu {
+  /*opacity:.3;*/
+  -webkit-transform-origin: top;
+  transform-origin: top;
+  -webkit-animation-fill-mode: forwards;  
+  animation-fill-mode: forwards; 
+  -webkit-transform: scale(1, 0);
+  transition: all 0.3s linear;
+  -webkit-transition: all 0.3s linear;
+}
+.caret-up {
+    width: 0; 
+    height: 0; 
+    /*border-left: 4px solid rgba(0, 0, 0, 0);
+    border-right: 4px solid rgba(0, 0, 0, 0);
+    border-bottom: 4px solid;*/
+    
+    display: inline-block;
+    margin-left: 2px;
+    vertical-align: middle;
+}
+
+/*///////////////////////////////
+  ////                       /////
+ /////       Indhold         /////
+ /////                       /////
+ ////////////////////////////////*/
+
+.container.indhold{
+    border-top:solid #eee 1px;
+    border-bottom:solid #eee 1px;
+    padding:10px 0;
+}
+.col-md-4 .row{
+    padding-left:15px;
+    padding-right:15px;
+}
+#ContentPlaceHolder1_Panel_TakBesked,.venstre_box, #ContentPlaceHolder1_Panel_SogBesked{
+    background-color:#eee;
+    box-sizing:border-box;
+    border-radius:3px;
+    border:solid #e3e3e3 1px;
+}
+#ContentPlaceHolder1_Panel_TakBesked, #ContentPlaceHolder1_Panel_SogBesked{
+    padding:20px 10px;
+}
+#ContentPlaceHolder1_Panel_TakBesked span, #ContentPlaceHolder1_Panel_SogBesked span{
+    color:#ff7200;/*orange*/
+}
+.venstre_box{
+    
+    margin:5px 0;
+    padding:0 15px 15px 15px;
+    
+}
+#mobler_box{
+    padding-left:5px;
+}
+.btn.btn-default.btn-xs{
+    background-color:#fff;
+    background-image:none;
+}
+
+
+/*/////////////////////////////
+  ////                    /////
+ /////   KontaktFormular  /////
+ /////                   /////
+ /////////////////////////////*/
+
+.input-group input, .input-group textarea{
+    border-radius:5px;
+}
+
+/*/////////////////////////////
+  ////                    /////
+ /////       Møbler       /////
+ /////                   /////
+ /////////////////////////////*/
+
+
+.sogefelter_varnr,.sogefelter{
+    border-bottom:1px solid #eee;
+    border-top:1px solid #eee;
+    padding:5px;
+    margin:10px 0;
+}
+.sogefelter{
+    border-bottom:none;
+}
+.col-md-9 span input{
+    border-radius:0;
+    background-image:none;
+    border:none;
+    vertical-align:central;
+    margin:0 200px 0 10px;
+    
+}
+.checkboxstyle label{
+    font-weight:100;
+    padding-right:5px;
+    width:50px;
+}
+.border_hovereffect{
+    box-sizing:border-box;
+    padding:10px;
+}
+.border_hovereffect h3 span{
+    color:#ff7200;
+}
+.border_hovereffect:hover{
+    border:solid 1px #eee;
+
+}
+
+.col-md-9 span input[type=checkbox], #ContentPlaceHolder1_CheckBoxList_Serie_3 {
+    border-radius:0;
+    background-image:none;
+    outline: 1px solid #1e5180;
+}
+/*/////////////////////Breadcrumb//////////////////////////////*/
+.bottom .breadcrumb,.bottom {
+    background-color:#eee;
+}
+.aktive{
+    color:#fff;
+}
+
+/*/////////////////////
+  ////            /////
+ /////   Footer   /////
+ /////            /////
+ //////////////////////*/
+
+footer{
+    margin-top:40px;
+}
+
+
+/*////////////////Admin//////////////////*/
+
+#ContentPlaceHolder1_LinkButton_AddNyhed, #ContentPlaceHolder1_LinkButton_AddProdukt{
+    margin-top:40px;
+    background-color:#3e3e3e;
+    padding:5px 10px;
+    
+}
+#ContentPlaceHolder1_LinkButton_AddNyhed b,#ContentPlaceHolder1_LinkButton_AddProdukt b{
+    color:#fff;
+}
+.col-md-1.col-md-offset-1.form-control-label{
+    font-size:12px;
+}
+ .login-box{
+     margin:50px auto;
+ }
+
+
+.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+   background-color: #f1f1f1;
+    /* background-color: rgba(0,0,0,0.2);*/
+}
+.table-striped tbody tr:hover td, .table-striped tbody tr:hover th {
+  background-color: rgba(67, 67, 67, 0.1);
+}

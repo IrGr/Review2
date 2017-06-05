@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Database" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\Database.mdf;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="DatabaseConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Aabningstid" Member="_Aabningstids">
+    <Type Name="_Aabningstid">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="dag" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="aaben" Type="System.String" DbType="NVarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="luk" Type="System.String" DbType="NVarChar(5) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Bruger" Member="_Brugers">
+    <Type Name="_Bruger">
+      <Column Name="bruger_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="brugernavn" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="password" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Forfatter" Member="_Forfatters">
+    <Type Name="_Forfatter">
+      <Column Name="forfatter_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="forfatter_name" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Association Name="_Forfatter__Nyhed" Member="_Nyheds" ThisKey="forfatter_id" OtherKey="fk_forfatter_id" Type="_Nyhed" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Kontaktoplysninger" Member="_Kontaktoplysningers">
+    <Type Name="_Kontaktoplysninger">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="navn" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="postnr" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="byen" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="adresse" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="telefon" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="email" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Nyhed" Member="_Nyheds">
+    <Type Name="_Nyhed">
+      <Column Name="nyhed_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="overskrift" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="tekst" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="dato" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
+      <Column Name="fk_forfatter_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="_Forfatter__Nyhed" Member="_Forfatter" ThisKey="fk_forfatter_id" OtherKey="forfatter_id" Type="_Forfatter" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Nyhedsbrev" Member="_Nyhedsbrevs">
+    <Type Name="_Nyhedsbrev">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="email" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="tilmelding" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Serie" Member="_Series">
+    <Type Name="_Serie">
+      <Column Name="serie_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="serie_navn" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="_Serie_Produkt" Member="_Produkts" ThisKey="serie_id" OtherKey="fk_serie_id" Type="_Produkt" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Produkt_Billede" Member="_Produkt_Billedes">
+    <Type Name="_Produkt_Billede">
+      <Column Name="fk_produkt_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="fk_billede_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Association Name="_Billede__Produkt_Billede" Member="_Billede" ThisKey="fk_billede_id" OtherKey="billlede_id" Type="_Billede" IsForeignKey="true" />
+      <Association Name="Produkt__Produkt_Billede" Member="_Produkt" ThisKey="fk_produkt_id" OtherKey="id" Type="_Produkt" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Billede" Member="_Billedes">
+    <Type Name="_Billede">
+      <Column Name="billlede_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="billede_navn" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="billede_sti_300_225" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="billede_sti_120_90" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="_Billede__Produkt_Billede" Member="_Produkt_Billedes" ThisKey="billlede_id" OtherKey="fk_billede_id" Type="_Produkt_Billede" />
+      <Association Name="_Billede_Produkt" Member="_Produkts" ThisKey="billlede_id" OtherKey="fk_primert_billede_id" Type="_Produkt" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Produkt" Member="_Produkts">
+    <Type Name="_Produkt">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="navn" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="pris" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="varenr" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="design_aar" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="beskrivelse" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="designer" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="fk_serie_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="fk_primert_billede_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Produkt__Produkt_Billede" Member="_Produkt_Billedes" ThisKey="id" OtherKey="fk_produkt_id" Type="_Produkt_Billede" />
+      <Association Name="_Billede_Produkt" Member="_Billede" ThisKey="fk_primert_billede_id" OtherKey="billlede_id" Type="_Billede" IsForeignKey="true" />
+      <Association Name="_Serie_Produkt" Member="_Serie" ThisKey="fk_serie_id" OtherKey="serie_id" Type="_Serie" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
